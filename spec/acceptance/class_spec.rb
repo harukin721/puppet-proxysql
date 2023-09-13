@@ -3,7 +3,7 @@
 require 'spec_helper_acceptance'
 
 describe 'proxysql class' do
-  unless ['18.04', '20.04'].include?(fact('os.release.major')) ||
+  unless ['18.04', '20.04', '22.04'].include?(fact('os.release.major')) ||
          (fact('os.name') == 'Debian' && fact('os.release.major') == '10') # There are no proxysql 1.4 packages for these OSes
     context 'version 1.4' do
       it 'works idempotently with no errors' do

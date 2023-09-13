@@ -50,7 +50,7 @@ describe 'proxysql' do
           sys_user = 'proxysql'
           sys_group = 'proxysql'
 
-          admin_socket = if ['18.04', '20.04'].include?(facts[:operatingsystemrelease])
+          admin_socket = if ['18.04', '20.04', '22.04'].include?(facts[:operatingsystemrelease])
                            '/var/lib/proxysql/proxysql_admin.sock'
                          else
                            '/tmp/proxysql_admin.sock'
@@ -102,7 +102,7 @@ describe 'proxysql' do
           end
 
           unless (facts[:osfamily] == 'RedHat' && facts[:operatingsystemmajrelease] == '7') ||
-                 (facts[:operatingsystem] == 'Ubuntu' && ['18.04', '20.04'].include?(facts[:operatingsystemmajrelease])) ||
+                 (facts[:operatingsystem] == 'Ubuntu' && ['18.04', '20.04', '22.04'].include?(facts[:operatingsystemmajrelease])) ||
                  (facts[:operatingsystem] == 'Debian' && facts[:operatingsystemmajrelease] =~ %r{^(9|10)$})
             it { is_expected.to contain_service('proxysql').with_hasstatus(true) }
             it { is_expected.to contain_service('proxysql').with_hasrestart(true) }
